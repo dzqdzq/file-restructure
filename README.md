@@ -1,8 +1,6 @@
 # File Restructure
 
-[English](#english) | [中文](#chinese)
-
-## English
+[English] | [中文](README.zh-CN.md)
 
 A powerful command-line tool to restructure files based on a reference directory structure. This tool is particularly useful for organizing assets, TypeScript files, and other project files according to a predefined structure.
 
@@ -89,94 +87,81 @@ const restructure = new FileRestructure({
 restructure.restructure();
 ```
 
----
+### Configuration Options
 
-## Chinese
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `sourceDir` | string | Source directory path | - |
+| `referenceDir` | string | Reference directory path | - |
+| `outputDir` | string | Output directory path | - |
+| `extensions` | array | File extensions array | `['.ts']` |
+| `assetsDirName` | string | Assets directory name | `'assets'` |
+| `language` | string | Language (en/zh) | `'en'` |
 
-一个强大的命令行工具，用于根据参考目录结构重新组织文件。此工具特别适用于按照预定义结构组织资源、TypeScript文件和其他项目文件。
+### Troubleshooting
 
-### 功能特点
+#### Common Errors
 
-- 🚀 **快速高效**: 快速重组大量文件
-- 🔧 **灵活配置**: 支持自定义文件扩展名和目录名
-- 🌍 **国际化**: 支持英文和中文输出消息
-- 📁 **智能文件匹配**: 根据名称和扩展名自动匹配文件
-- 🎯 **保持结构**: 在输出中保持参考目录结构
+1. **Source directory does not exist**
+   ```
+   Error: Source directory does not exist: ./src
+   ```
+   Solution: Check if the source directory path is correct
 
-### 安装
+2. **Reference directory does not exist**
+   ```
+   Error: Reference directory does not exist: ./reference
+   ```
+   Solution: Check if the reference directory path is correct
 
+3. **Permission denied**
+   ```
+   Error: EACCES: permission denied
+   ```
+   Solution: Check directory permissions or use sudo
+
+#### Debug Tips
+
+Use `-v` flag for verbose output:
 ```bash
-npm install -g file-restructure
+restructure ./src ./reference ./output -v
 ```
 
-### 使用方法
+### Examples
 
-#### 基本用法
-
+#### Game Development
 ```bash
-restructure <源路径> <参考目录> <输出目录>
+# Restructure game asset files
+restructure ./game-assets ./template-assets ./organized-assets -e ".png,.jpg,.meta"
 ```
 
-#### 示例
-
+#### Web Projects
 ```bash
-# 基本文件重组
-restructure ./src ./reference ./output
-
-# 使用自定义文件扩展名
-restructure ./src ./reference ./output -e ".ts,.meta,.json"
-
-# 使用中文输出
-restructure ./src ./reference ./output -l zh
-
-# 详细输出，自定义资源目录
-restructure ./src ./reference ./output -v -a "my-assets"
+# Restructure TypeScript files
+restructure ./src ./template ./output -e ".ts,.js,.json" -l zh
 ```
 
-### 命令行选项
-
-| 选项 | 简写 | 描述 | 默认值 |
-|------|------|------|--------|
-| `--extensions` | `-e` | 要匹配的文件扩展名（逗号分隔） | `.ts` |
-| `--assets-dir` | `-a` | 资源目录名称 | `assets` |
-| `--language` | `-l` | 输出消息语言 (en/zh) | `en` |
-| `--verbose` | `-v` | 详细输出 | `false` |
-| `--help` | `-h` | 显示帮助 | - |
-| `--version` | - | 显示版本 | - |
-
-### 工作原理
-
-1. **扫描参考目录**: 工具扫描参考目录中指定扩展名的文件
-2. **匹配文件**: 对于每个参考文件，在源目录中找到匹配的文件
-3. **创建结构**: 创建与参考目录相同的目录结构
-4. **复制文件**: 将匹配的文件复制到相应位置
-5. **处理剩余**: 将剩余文件放置在资源根目录中
-
-### 使用场景
-
-- **游戏开发**: 根据参考结构组织游戏资源
-- **Web项目**: 基于模板重组TypeScript文件
-- **资源管理**: 重新组织媒体文件及其元数据
-- **代码迁移**: 在项目间迁移时重组代码文件
-
-### API使用
-
-您也可以以编程方式使用该库：
-
-```javascript
-const FileRestructure = require('file-restructure');
-
-const restructure = new FileRestructure({
-  sourceDir: './src',
-  referenceDir: './reference',
-  outputDir: './output',
-  extensions: ['.ts', '.meta'],
-  assetsDirName: 'assets',
-  language: 'zh'
-});
-
-restructure.restructure();
+#### Asset Management
+```bash
+# Restructure media files
+restructure ./media ./structure ./organized -e ".mp4,.jpg,.png,.meta"
 ```
+
+### Notes
+
+1. **File Matching**: Tool matches files based on filename (without extension)
+2. **Directory Structure**: Output maintains the same structure as reference directory
+3. **File Overwrite**: Existing files in target directory will be overwritten
+4. **Permissions**: Ensure you have read access to source directory and write access to output directory
+
+### Changelog
+
+#### v1.0.8
+- Initial release
+- Support for command line and API usage
+- Support for English and Chinese output
+- Support for custom file extensions
+- Support for custom assets directory name
 
 ## License
 

@@ -30,19 +30,6 @@ const argv = yargs
     type: 'string',
     default: '.ts'
   })
-  .option('assets-dir', {
-    alias: 'a',
-    describe: 'Assets directory name',
-    type: 'string',
-    default: 'assets'
-  })
-  .option('language', {
-    alias: 'l',
-    describe: 'Language for output messages (en/zh)',
-    type: 'string',
-    choices: ['en', 'zh'],
-    default: 'en'
-  })
   .option('verbose', {
     alias: 'v',
     describe: 'Verbose output',
