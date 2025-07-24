@@ -26,9 +26,9 @@ const argv = yargs
   })
   .option('extensions', {
     alias: 'e',
-    describe: 'File extensions to match (comma-separated)',
+    describe: 'File extensions to match (comma-separated). Leave empty to process all files.',
     type: 'string',
-    default: '.ts'
+    default: ''
   })
   .option('verbose', {
     alias: 'v',
@@ -38,23 +38,21 @@ const argv = yargs
   })
   .example('$0 ./src ./reference ./output', 'Basic usage')
   .example('$0 ./src ./reference ./output -e ".ts,.meta"', 'With custom extensions')
-  .example('$0 ./src ./reference ./output -l zh', 'With Chinese language')
+  .example('$0 ./src ./reference ./output -v', 'With verbose output')
   .help('h')
   .alias('h', 'help')
   .version()
   .argv;
 
 // 解析扩展名参数
-const extensions = argv.extensions.split(',').map(ext => ext.trim());
+const extensions = argv.extensions ? argv.extensions.split(',').map(ext => ext.trim()) : [];
 
 // 创建配置对象
 const config = {
   sourceDir: argv.sourcePath,
   referenceDir: argv.referenceDir,
   outputDir: argv.outputDir,
-  extensions: extensions,
-  assetsDirName: argv.assetsDir,
-  language: argv.language
+  extensions: extensions
 };
 
 // 显示配置信息
@@ -64,8 +62,6 @@ if (argv.verbose) {
   console.log(`  Reference Directory: ${config.referenceDir}`);
   console.log(`  Output Directory: ${config.outputDir}`);
   console.log(`  Extensions: ${config.extensions.join(', ')}`);
-  console.log(`  Assets Directory: ${config.assetsDirName}`);
-  console.log(`  Language: ${config.language}`);
   console.log('');
 }
 

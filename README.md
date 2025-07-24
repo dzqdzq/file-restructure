@@ -2,15 +2,11 @@
 
 [English] | [中文](README.zh-CN.md)
 
-A powerful command-line tool to restructure files based on a reference directory structure. This tool is particularly useful for organizing assets, TypeScript files, and other project files according to a predefined structure.
+A powerful command-line tool to restructure files based on a reference directory structure
 
-### Features
+### Use Cases
 
-- 🚀 **Fast and Efficient**: Quickly reorganize large numbers of files
-- 🔧 **Flexible Configuration**: Support for custom file extensions and directory names
-- 🌍 **Internationalization**: Support for English and Chinese output messages
-- 📁 **Smart File Matching**: Automatically matches files based on name and extension
-- 🎯 **Preserves Structure**: Maintains the reference directory structure in the output
+Often when using file comparison tools to compare file content differences, the file directory structures are different, making it impossible to compare. Use this tool to restructure the file storage directories, then use file comparison tools like Beyond Compare for comparison.
 
 ### Installation
 
@@ -29,26 +25,21 @@ restructure <sourcePath> <referenceDir> <outputDir>
 #### Examples
 
 ```bash
-# Basic file restructuring
+# Basic file restructuring (process all files)
 restructure ./src ./reference ./output
 
 # With custom file extensions
 restructure ./src ./reference ./output -e ".ts,.meta,.json"
 
-# With Chinese language output
-restructure ./src ./reference ./output -l zh
-
-# Verbose output with custom assets directory
-restructure ./src ./reference ./output -v -a "my-assets"
+# With verbose output
+restructure ./src ./reference ./output -v
 ```
 
 ### Command Line Options
 
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
-| `--extensions` | `-e` | File extensions to match (comma-separated) | `.ts` |
-| `--assets-dir` | `-a` | Assets directory name | `assets` |
-| `--language` | `-l` | Language for output messages (en/zh) | `en` |
+| `--extensions` | `-e` | File extensions to match (comma-separated). Leave empty to process all files | `` |
 | `--verbose` | `-v` | Verbose output | `false` |
 | `--help` | `-h` | Show help | - |
 | `--version` | - | Show version | - |
@@ -59,14 +50,9 @@ restructure ./src ./reference ./output -v -a "my-assets"
 2. **Match Files**: For each reference file, it finds matching files in the source directory
 3. **Create Structure**: Creates the same directory structure as the reference directory
 4. **Copy Files**: Copies matched files to their corresponding locations
-5. **Handle Remaining**: Places remaining files in the assets root directory
+5. **Handle Remaining**: Places remaining files in the output root directory
 
-### Use Cases
 
-- **Game Development**: Organize game assets according to a reference structure
-- **Web Projects**: Restructure TypeScript files based on a template
-- **Asset Management**: Reorganize media files and their metadata
-- **Code Migration**: Restructure code files when migrating between projects
 
 ### API Usage
 
@@ -79,9 +65,7 @@ const restructure = new FileRestructure({
   sourceDir: './src',
   referenceDir: './reference',
   outputDir: './output',
-  extensions: ['.ts', '.meta'],
-  assetsDirName: 'assets',
-  language: 'en'
+  extensions: ['.ts', '.meta']
 });
 
 restructure.restructure();
@@ -94,9 +78,7 @@ restructure.restructure();
 | `sourceDir` | string | Source directory path | - |
 | `referenceDir` | string | Reference directory path | - |
 | `outputDir` | string | Output directory path | - |
-| `extensions` | array | File extensions array | `['.ts']` |
-| `assetsDirName` | string | Assets directory name | `'assets'` |
-| `language` | string | Language (en/zh) | `'en'` |
+| `extensions` | array | File extensions array. Empty array processes all files | `[]` |
 
 ### Troubleshooting
 
@@ -129,22 +111,22 @@ restructure ./src ./reference ./output -v
 
 ### Examples
 
-#### Game Development
+#### File Comparison Preparation
 ```bash
-# Restructure game asset files
-restructure ./game-assets ./template-assets ./organized-assets -e ".png,.jpg,.meta"
+# Restructure files for comparison
+restructure ./project1 ./project2 ./restructured-project1 -e ".ts,.js,.json"
 ```
 
-#### Web Projects
+#### Code Review
 ```bash
-# Restructure TypeScript files
-restructure ./src ./template ./output -e ".ts,.js,.json" -l zh
+# Restructure code files for review
+restructure ./old-version ./new-version ./review-ready -e ".ts,.js,.css,.html"
 ```
 
-#### Asset Management
+#### Documentation Comparison
 ```bash
-# Restructure media files
-restructure ./media ./structure ./organized -e ".mp4,.jpg,.png,.meta"
+# Restructure documentation files
+restructure ./docs-v1 ./docs-v2 ./docs-comparison -e ".md,.txt,.pdf"
 ```
 
 ### Notes
@@ -159,9 +141,8 @@ restructure ./media ./structure ./organized -e ".mp4,.jpg,.png,.meta"
 #### v1.0.8
 - Initial release
 - Support for command line and API usage
-- Support for English and Chinese output
 - Support for custom file extensions
-- Support for custom assets directory name
+- Direct file restructuring based on reference directory structure
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "file-restructure",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A tool to restructure files based on reference directory structure",
   "main": "lib/index.js",
   "bin": {
@@ -12,7 +12,7 @@
   "keywords": [
     "file",
     "restructure",
-    "assets",
+    "文件结构重组",
     "dzqdzq"
   ],
   "author": "dzqdzq",
