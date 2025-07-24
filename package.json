@@ -1,0 +1,34 @@
+{
+  "name": "file-restructure",
+  "version": "1.0.8",
+  "description": "A tool to restructure files based on reference directory structure",
+  "main": "lib/index.js",
+  "bin": {
+    "restructure": "./bin/restructure.js"
+  },
+  "scripts": {
+    "start": "node bin/restructure.js"
+  },
+  "keywords": [
+    "file",
+    "restructure",
+    "assets",
+    "dzqdzq"
+  ],
+  "author": "dzqdzq",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzqdzq/file-restructure.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dzqdzq/file-restructure/issues"
+  },
+  "homepage": "https://github.com/dzqdzq/file-restructure#readme"
+}

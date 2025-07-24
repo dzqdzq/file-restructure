@@ -1,0 +1,8 @@
+{
+  "sourceDir": "./src",
+  "referenceDir": "./reference",
+  "outputDir": "./output",
+  "extensions": [".ts", ".js", ".meta", ".json"],
+  "assetsDirName": "assets",
+  "language": "en"
+} 
