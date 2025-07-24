@@ -129,21 +129,6 @@ restructure ./old-version ./new-version ./review-ready -e ".ts,.js,.css,.html"
 restructure ./docs-v1 ./docs-v2 ./docs-comparison -e ".md,.txt,.pdf"
 ```
 
-### Notes
-
-1. **File Matching**: Tool matches files based on filename (without extension)
-2. **Directory Structure**: Output maintains the same structure as reference directory
-3. **File Overwrite**: Existing files in target directory will be overwritten
-4. **Permissions**: Ensure you have read access to source directory and write access to output directory
-
-### Changelog
-
-#### v1.0.8
-- Initial release
-- Support for command line and API usage
-- Support for custom file extensions
-- Direct file restructuring based on reference directory structure
-
 ## License
 
 MIT License 
